@@ -82,21 +82,24 @@
       const positionSeconds = ((seconds / 60) * 360) + 90;
       displaySeconds.style.transform = `rotate(${positionSeconds}deg)`;
       if(seconds === 0){
-        displaySeconds.style.transition = "0s";
+        displaySeconds.style.transition = "0s";}
+      else { displaySeconds.style.transition = ".3s cubic-bezier(0.1, 1.7, 0.51, 1.11)";
       }
 
       const minutes = date.getMinutes();
       const positionMinutes = ((minutes / 60) * 360) + 90;
       displayMinutes.style.transform = `rotate(${positionMinutes}deg)`;
       if(minutes === 0){
-        displayMinutes.style.transition = "0s";
+        displayMinutes.style.transition = "0s";}
+      else { displayMinutes.style.transition = ".3s cubic-bezier(0.1, 1.7, 0.51, 1.11)";
       }
 
       const hours = date.getHours();
       const positionHours = ((hours / 12) * 360) + 90;
       displayHours.style.transform = `rotate(${positionHours}deg)`;
       if(hours === 0 || hours === 12){
-        displayMinutes.style.transition = "0s";
+        displayHours.style.transition = "0s";}
+      else { displayHours.style.transition = ".3s cubic-bezier(0.1, 1.7, 0.51, 1.11)";
       }
     };
 
