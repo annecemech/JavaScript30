@@ -15,7 +15,34 @@
     </ul>
   </form>
 <script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const resultsList = document.querySelector('.suggestions');
+  let results = null;
+
+  fetch(endpoint)
+  .then(response => response.json())
+    .then(data => {
+      results = data
+      console.log(results.length);
+    });
+
+  function checkElements (keyword){
+  const keywordLow = keyword.toLowerCase();
+  const filteredElements = results.filter(element => element.city.toLowerCase().includes(keywordLow) || element.state.toLowerCase().includes(keywordLow) );
+      console.log(filteredElements);
+      resultsList.innerHTML = '';
+      filteredElements.forEach( element => {
+        resultsList.insertAdjacentHTML('afterbegin', `<li>${element.city}, ${element.state} <span class="population">${element.population}</span></li>`);
+      })
+    };
+
+  function makeSuggestions(){
+  const citiesResult = checkElements(this.value);
+  // console.log(citiesResult);
+  }
+
+  const input = document.querySelector('input');
+  input.addEventListener('keyup', makeSuggestions);
 
 </script>
 </body>
